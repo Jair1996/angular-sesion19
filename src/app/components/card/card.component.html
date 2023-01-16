@@ -1,0 +1,9 @@
+<div class="card">
+  <img [src]="pokemon.sprites.front_default" class="card-img-top" alt="..." />
+  <div class="card-body">
+    <h5 class="card-title text-center">{{ pokemon.name | titlecase }}</h5>
+    <div class="mt-4 d-grid gap-2">
+      <button [routerLink]="['detail', pokemon.id]" class="btn btn-success">Ver Detalle</button>
+    </div>
+  </div>
+</div>

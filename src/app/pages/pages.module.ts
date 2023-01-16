@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomePageComponent } from './home-page/home-page.component';
 import { DetailPageComponent } from './detail-page/detail-page.component';
+import { ComponentsModule } from '../components/components.module';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -15,7 +17,9 @@ import { DetailPageComponent } from './detail-page/detail-page.component';
     DetailPageComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ComponentsModule,
+    RouterModule
   ]
 })
 export class PagesModule { }
