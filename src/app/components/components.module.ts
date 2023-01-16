@@ -5,6 +5,7 @@ import { CardComponent } from './card/card.component';
 import { RouterModule } from '@angular/router';
 import { SearchComponent } from './search/search.component';
 import { FormsModule } from '@angular/forms';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 
 
@@ -12,11 +13,13 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     ListCardComponent,
     CardComponent,
-    SearchComponent
+    SearchComponent,
+    SpinnerComponent
   ],
   exports: [
     ListCardComponent,
-    SearchComponent
+    SearchComponent,
+    SpinnerComponent
   ],
   imports: [
     CommonModule,

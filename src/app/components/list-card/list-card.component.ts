@@ -9,11 +9,13 @@ import { PokemonService } from 'src/app/services/pokemon.service';
 })
 export class ListCardComponent implements OnInit {
   pokemons: Pokemon[] = [];
+  spinner: boolean = true;
 
   constructor(private pokemonService: PokemonService) {}
 
   ngOnInit(): void {
     this.pokemonService.getPokemons(150).subscribe((pokemons) => {
+      this.spinner = false;
       this.pokemons = pokemons;
     });
   }
