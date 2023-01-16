@@ -1,15 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { switchMap } from 'rxjs';
 import { Pokemon } from 'src/app/interfaces/pokemon.interface';
 import { PokemonService } from 'src/app/services/pokemon.service';
 
 @Component({
   selector: 'app-detail-page',
   templateUrl: './detail-page.component.html',
-  styles: [],
+  styles: [
+    `
+      img {
+        width: 100%;
+      }
+    `,
+  ],
 })
 export class DetailPageComponent implements OnInit {
-  pokemon!: Pokemon;
+  pokemon!: Pokemon | null;
 
   constructor(
     private route: ActivatedRoute,
@@ -17,10 +24,12 @@ export class DetailPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const pokemonId = Number(this.route.snapshot.paramMap.get('param'));
-
-    this.pokemonService.getPokemon(pokemonId).subscribe((pokemon) => {
-      this.pokemon = pokemon;
-    });
+    this.route.params
+      .pipe(switchMap(({ param }) => this.pokemonService.getPokemon(param)))
+      .subscribe({
+        next: (pokemon) => {
+          this.pokemon = pokemon;
+        }
+      });
   }
 }

@@ -1,8 +1,44 @@
-<div *ngIf="pokemon" class="row">
+<div *ngIf="pokemon; else noPokemon" class="row">
+  <p class="text-primary fw-bold fs-3">{{ pokemon.name | titlecase }}</p>
   <div class="col-md-3">
     <img [src]="pokemon.sprites.front_default" class="img-thumbnail" />
   </div>
   <div class="col-md-9">
-    <p class="text-primary fw-bold fs-3">{{ pokemon.name | titlecase }}</p>
+    <ol class="list-group">
+      <li
+        class="list-group-item d-flex justify-content-between align-items-start"
+      >
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">ID</div>
+          {{ pokemon.id }}
+        </div>
+      </li>
+      <li
+        class="list-group-item d-flex justify-content-between align-items-start"
+      >
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">Base Experience</div>
+          {{ pokemon.base_experience }}
+        </div>
+      </li>
+      <li
+        class="list-group-item d-flex justify-content-between align-items-start"
+      >
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">Height</div>
+          {{ pokemon.height }} pulgadas
+        </div>
+      </li>
+    </ol>
   </div>
+</div>
+
+<ng-template #noPokemon>
+  <div class="alert alert-danger" role="alert">
+    El pókemon buscado no existe
+  </div>
+</ng-template>
+
+<div class="mt-5">
+  <button routerLink="/" class="btn btn-outline-primary">Volver</button>
 </div>

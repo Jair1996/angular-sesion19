@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { combineLatest, Observable } from 'rxjs';
+import { catchError, combineLatest, Observable } from 'rxjs';
 
 import { Pokemon } from '../interfaces/pokemon.interface';
 
@@ -13,7 +13,9 @@ export class PokemonService {
   constructor(private http: HttpClient) {}
 
   getPokemon(param: number | string): Observable<Pokemon> {
-    return this.http.get<Pokemon>(`${this.baseUrl}/pokemon/${param}`);
+    return this.http
+      .get<Pokemon>(`${this.baseUrl}/pokemon/${param}`)
+      .pipe(catchError((_) => []));
   }
 
   getPokemons(count: number): Observable<Pokemon[]> {
@@ -23,6 +25,6 @@ export class PokemonService {
       requests.push(this.getPokemon(i));
     }
 
-    return combineLatest(requests)
+    return combineLatest(requests);
   }
 }
