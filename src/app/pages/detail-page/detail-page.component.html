@@ -3,7 +3,7 @@
 </div>
 
 <ng-template #cargado>
-  <div *ngIf="pokemon; else noPokemon" class="row">
+  <div *ngIf="pokemon.id; else noPokemon" class="row">
     <p class="text-primary fw-bold fs-3">{{ pokemon.name | titlecase }}</p>
     <div class="col-md-3">
       <img [src]="pokemon.sprites.front_default" class="img-thumbnail" />
