@@ -30,8 +30,7 @@ export class DetailPageComponent implements OnInit {
         tap((_) => {
           this.spinner = true;
         }),
-        switchMap(({ param }) => this.pokemonService.getPokemon(param)),
-        catchError((_) => [])
+        switchMap(({ param }) => this.pokemonService.getPokemon(param))
       )
       .subscribe({
         next: (pokemon) => {

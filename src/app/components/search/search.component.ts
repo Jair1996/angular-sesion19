@@ -16,7 +16,7 @@ export class SearchComponent {
       return;
     }
 
-    this.router.navigate(['/detail', this.textSearch]);
+    this.router.navigate(['/detail', this.textSearch.trim().toLowerCase()]);
 
     this.textSearch = '';
   }
